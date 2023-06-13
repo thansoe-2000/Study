@@ -1,0 +1,36 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+{% if page == 'createRoom' %}
+<div class="room">
+     <h1>Create Room</h1>
+     <form action="" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Create" class="btn btn-success">
+          <input type="reset" value="Cancle" class="btn btn-danger" onclick="history.back()">
+     </form>
+</div> 
+{% elif page == 'updateRoom' %}
+<div class="room">
+     <h1>Update Room</h1>
+     <form action="" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Update" class="btn btn-success">
+          <input type="reset" value="Cancle" class="btn btn-danger" onclick="history.back()">
+     </form>
+</div> 
+
+{% else %}
+<form action="" method="POST" class="alert alert-info" style="margin-top: 50px;">
+     {% csrf_token %}
+     <h4>Are you sure want to delete? </h4><h3>"{{ room.name }}"</h3> 
+     <input type="submit" value="Confirm" class="btn btn-success">
+     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">Cancle</a>
+</form>
+{% endif %}
+
+
+
+{% endblock content %} 

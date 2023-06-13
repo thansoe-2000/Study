@@ -1,0 +1,10 @@
+{% extends "base/main.html" %}
+{% block content %}
+<form action="" method="POST" class="alert alert-info" style="margin-top: 50px;">
+     {% csrf_token %}
+     <h4>Are you sure want to delete? </h4><h3>"{{ message.body }}"</h3> 
+     <input type="submit" value="Confirm" class="btn btn-success">
+     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">Cancle</a>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login/register</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+</head>
+
+<body>
+
+  <div>
+    <div class="login_register">
+      <div class="row" style="margin-top: 200px">
+        <div class="col col-sm-4"></div>
+        {% if page == 'login' %}
+        <div class="col col-sm-4">
+          <h3>Login</h3>
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="username mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" id="" placeholder="Enter username" />
+            </div>
+
+            <div class="password mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" id="" placeholder="Enter password" />
+            </div>
+
+            <input type="submit" value="Login">
+          </form>
+          <p>Haven't signed up yet?</p>
+          <a href="{% url 'registerUser' %}">Register</a>
+        </div>
+        <!-- register -->
+        {% else %}
+        <div class="col col-sm-4">
+          <h3>Register</h3>
+          <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Register">
+          </form>
+          <p>Already have an account</p>
+          <a href="{% url 'loginPage' %}">Login</a>
+        </div>
+        {% endif %}
+        
+        <div class="col col-sm-4"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
